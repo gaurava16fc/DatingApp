@@ -26,7 +26,7 @@ namespace DatingApp.API
         {
             services.AddDbContext<DataContext>(x => x.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
             services.AddControllers();
-            // services.AddMvc();
+            // services.AddMvc(options=>options.EnableEndpointRouting=false);
             services.AddCors();
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -55,15 +55,12 @@ namespace DatingApp.API
 
             app.UseCors(p => p.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             app.UseAuthentication();
-            app.UseMvc();
-
-            // app.UseRouting();
-            // app.UseAuthorization();
-            // app.UseEndpoints(endpoints =>
-            // {
-            //     endpoints.MapControllers();
-            // });
-
+            app.UseRouting();
+            app.UseAuthorization();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
         }
     }
 }
