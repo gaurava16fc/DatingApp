@@ -10,10 +10,11 @@ export class AuthService {
   apiBaseUrl = '';
 
 constructor(private http: HttpClient) {
-  this.apiBaseUrl = environment.apiBaseUrl;
+  this.apiBaseUrl = environment.apiBaseUrl + 'auth/';
  }
+
 login(model: any) {
-  return this.http.post(this.apiBaseUrl + 'auth/login', model).pipe(
+  return this.http.post(this.apiBaseUrl + 'login', model).pipe(
       map((response: any) => {
         const user = response;
         if (user) {
@@ -21,6 +22,10 @@ login(model: any) {
         }
       })
     );
+}
+
+register(model: any){
+  return this.http.post(this.apiBaseUrl + 'register', model);
 }
 
 }

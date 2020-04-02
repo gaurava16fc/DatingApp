@@ -13,8 +13,8 @@ export class NavigationComponent implements OnInit {
   ngOnInit() {
   }
 
-  login(){
-    console.log(this.model);
+  login() {
+    // console.log(this.model);
     this.authService.login(this.model).subscribe(next => {
       console.log('Logged-in successfully!');
     }, error => {
@@ -22,4 +22,13 @@ export class NavigationComponent implements OnInit {
     });
   }
 
+  loggedIn() {
+    const token = localStorage.getItem('token');
+    return !!token;
+  }
+
+  logout() {
+    localStorage.removeItem('token');
+    console.log('Logged-out successfully!');
+  }
 }
