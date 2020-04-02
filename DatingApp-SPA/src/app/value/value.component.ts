@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-value',
@@ -7,15 +8,19 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./value.component.css']
 })
 export class ValueComponent implements OnInit {
-  Values:any;
-  constructor(private http: HttpClient ) { }
+  Values: any;
+  apiBaseUrl = '';
+
+  constructor(private http: HttpClient) {
+    this.apiBaseUrl = environment.apiBaseUrl;
+  }
 
   ngOnInit() {
     this.getValues();
   }
 
   getValues() {
-    this.http.get('http://localhost:5000/api/values')
+    this.http.get(this.apiBaseUrl + 'values')
       .subscribe(response => {
         this.Values = response;
       },
