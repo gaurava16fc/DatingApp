@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System;
 
 namespace DatingApp.API.Controllers
 {
@@ -43,6 +44,8 @@ namespace DatingApp.API.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login(UserForLoginDTO userForLoginDTO)
         {
+            throw new Exception("Computer says no....!");
+
             var userFromRepo = await _repo.Login(userForLoginDTO.UserName, userForLoginDTO.Password);
             if (userFromRepo == null)
                 return Unauthorized();
