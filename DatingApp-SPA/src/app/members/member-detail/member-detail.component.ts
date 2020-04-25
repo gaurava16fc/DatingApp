@@ -14,7 +14,7 @@ import { User } from 'src/app/_models/user';
 export class MemberDetailComponent implements OnInit {
   user: User;
 
-  constructor(private userService: UserService, 
+  constructor(private userService: UserService,
               private alertify: AlertifyService,
               private route: ActivatedRoute) { }
 
@@ -28,7 +28,7 @@ export class MemberDetailComponent implements OnInit {
         this.user = user;
       }, error => {
         this.alertify.error(error);
-      })
+      });
   }
 
 }
