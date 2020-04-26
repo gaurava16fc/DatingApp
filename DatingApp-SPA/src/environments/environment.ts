@@ -4,7 +4,9 @@
 
 export const environment = {
   production: false,
-  apiBaseUrl: 'http://localhost:5000/api/'
+  apiBaseUrl: 'http://localhost:5000/api/',
+  whiteListedDomains: ['localhost:5000'],
+  blackListedRoutes: ['localhost:5000/api/']
 };
 
 /*
