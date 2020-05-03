@@ -22,4 +22,7 @@ constructor(private http: HttpClient) {
   return this.http.get<User>(this.apiBaseUrl + id);
   }
 
+  updateUser(id: number, user: User) {
+    return this.http.put(this.apiBaseUrl + id, user);
+    }
 }
